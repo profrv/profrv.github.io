@@ -2,34 +2,381 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Verma - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(248, 249, 250, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav-btn {
+            background: #d1d5db;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn:hover {
+            background: #9ca3af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn.active {
+            background: #6b7280;
+            color: white;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            margin-top: 100px;
+        }
+
+        /* Hero section */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            min-height: 60vh;
+        }
+
+        .hero-image {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .photo-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .photo {
+            width: 280px;
+            height: 350px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .geometric-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            transform: rotate(45deg);
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -120px;
+            z-index: 1;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-left: 5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4b5563;
+            max-width: 600px;
+        }
+
+        /* Section styling */
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .section-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+        }
+
+        .project-item, .work-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+
+        .project-item:last-child, .work-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: #1f2937;
+            min-width: 100px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                padding-left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .photo {
+                width: 240px;
+                height: 300px;
+            }
+
+            .geometric-shape {
+                width: 260px;
+                height: 260px;
+                margin-top: -130px;
+                margin-left: -100px;
+            }
+
+            .nav-container {
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        .hero-image {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Rohit Verma</h1>
-    <p>Email: rvesprof@gmail.com</p>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-btn active">Home</a>
+            <a href="#projects" class="nav-btn">Projects</a>
+            <a href="#work" class="nav-btn">Work</a>
+            <a href="#contact" class="nav-btn">Contact</a>
+        </div>
+    </nav>
 
-    <h2>About Me</h2>
-    <p>
-        I am a postgraduate student in theoretical physics interested in gravity, relativity, and quantum field theory.
-    </p>
+    <!-- Main content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-image">
+                <div class="geometric-shape"></div>
+                <div class="photo-container">
+                    <img src="Face_Pic.jpg" 
+                         alt="Rohit Verma" class="photo">
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Rohit Verma</h1>
+                <p class="hero-description">
+                    <!-- I am an assiduous individual with a great passion for theoretical physics, and a growing interest in computational physics. As a final year master's student, I have advanced physics and abstract mathematics knowledge. Alongside this, I'm adept with Linux OS, Python and Julia programming language for computation and data analysis purposes. I also bring experience in team collaboration, teaching, mentoring, maintaining professional relations, and scientific writing. Besides core science research, I'm interested in science education and communication. -->
 
-    <h2>Projects</h2>
-    <ul>
-        <li><strong>Project 1</strong>: Brief description of what it is or what you did.</li>
-        <li><strong>Project 2</strong>: Another project description.</li>
-        <!-- Add more as needed -->
-    </ul>
+                    Hey all, the portfolio page is still under development.
+                </p>
+            </div>
+        </section>
 
-    <h2>Education</h2>
-    <ul>
-        <li>BS-MS Dual Degree in Physics, IISER Kolkata, 2020-2025</li>
-    </ul>
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="section-content">
+                <div class="project-item">
+                    Master's Thesis
+                </div>
+                <div class="project-item">
+                    DSKC Summer Project
+                </div>
+                <div class="project-item">
+                    REYES Summer School
+                </div>
+            </div>
+        </section>
 
-    <h2>Links</h2>
-    <ul>
-        <li><a href="https://github.com/yourusername">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/yourusername">LinkedIn</a></li>
-        <!-- Add more if you want -->
-    </ul>
+        <!-- Work Section -->
+        <section id="work" class="section">
+            <h2 class="section-title">Work</h2>
+            <div class="section-content">
+                <div class="work-item">
+                    Teaching Assistant - PH4213
+                </div>
+                <div class="work-item">
+                    Teaching Assistant - PH2102
+                </div>
+                <div class="work-item">
+                    Teaching Assistant - PH1101
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="section-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <span>rvesprof@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">WhatsApp:</span>
+                        <span>+91 XXXXX XXXXX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all buttons
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Smooth scroll to section
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Update active nav button on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('href') === `#${current}`) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
